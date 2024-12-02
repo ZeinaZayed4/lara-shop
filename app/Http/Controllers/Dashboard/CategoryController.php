@@ -13,7 +13,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::paginate(5);
+        $cats = Category::paginate(10);
         return view('dashboard.category.index', compact('cats'));
     }
 
@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.category.create');
     }
 
     /**
@@ -30,7 +30,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'icon' => 'required',
+            'photo' => 'required',
+        ]);
+
+        $filename = now()->timestamp . '_' . $request->file('photo')->getClientOriginalName();
+        $filePath = 'uploads/' . $filename;
+        $request->file('photo')->move('uploads', $filename);
+
+        $newCategory = new Category;
+        $newCategory->name = $request->name;
+        $newCategory->icon = $request->icon;
+        $newCategory->photo = $filePath;
+        $newCategory->save();
+
+        return back()->with('success', 'Category has been added successfully.');
     }
 
     /**
@@ -46,7 +62,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('dashboard.category.edit', compact('category'));
     }
 
     /**
@@ -54,7 +72,26 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'icon' => 'required',
+        ]);
+
+        if ($request->hasFile('photo')) {
+            $filename = now()->timestamp . '_' . $request->file('photo')->getClientOriginalName();
+            $filePath = 'uploads/' . $filename;
+            $request->file('photo')->move('uploads', $filename);
+        }
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->icon = $request->icon;
+        if ($request->hasFile('photo')) {
+            $category->photo = $filePath;
+        }
+        $category->save();
+
+        return back()->with('success', 'Category has been updated successfully.');
     }
 
     /**
@@ -62,6 +99,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Category::destroy($id);
+
+        return back();
     }
 }

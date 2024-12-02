@@ -9,8 +9,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800"></h1>
 
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-            <i class="fas fa-download fa-sm text-white-50"></i>
+        <a href="{{ url('/admin/categories/create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             New Category
         </a>
     </div>
@@ -31,25 +30,37 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($cats as $category)
+                        @if($cats->isNotEmpty())
+                            @foreach($cats as $category)
+                                <tr>
+                                    <td>{{ $category->name }}</td>
+                                    <td>
+                                        <img src="{{ asset($category->photo) }}" style="width: 200px">
+                                    </td>
+                                    <td>
+                                        <i class="fas fa-{{ $category->icon }}"></i>
+                                    </td>
+                                    <td>
+                                        <a href="{{ url("admin/categories/$category->id/edit") }}" class="btn btn-warning">
+                                            Edit
+                                        </a>
+                                        <form action="{{ url('/admin/categories/' . $category->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
                             <tr>
-                                <td>{{ $category->name }}</td>
-                                <td>
-                                    <img src="{{ $category->photo }}">
-                                </td>
-                                <td>
-                                    <i class="fas fa-{{ $category->icon }}"></i>
-                                </td>
-                                <td>
-                                    <a href="" class="btn btn-warning">
-                                        Edit
-                                    </a>
-                                    <a href="" class="btn btn-danger">
-                                        Delete
-                                    </a>
+                                <td colspan="4">
+                                    <div class="alert alert-danger" role="alert">
+                                        No Data Found!
+                                    </div>
                                 </td>
                             </tr>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
                 {{ $cats->links() }}

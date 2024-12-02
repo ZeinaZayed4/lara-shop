@@ -9,6 +9,10 @@ Route::get('/', function () {
 
 Route::get('/login', function () {
     return view('dashboard.login');
+})->name('login');
+
+Route::get('/create', function (){
+
 });
 
 Route::resource('/categories', CategoryController::class);
