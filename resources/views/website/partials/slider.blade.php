@@ -7,94 +7,16 @@
                     <div class="alldepartments_dropdown show_lg collapse" id="alldepartments_dropdown">
                         <div class="card">
                             <ul class="alldepartments_menulist ul_li_block clearfix">
-                                <li>
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_01.png" alt="icon_not_found">
-													</span>
-                                        <strong>Free Gift Product</strong>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_02.png" alt="icon_not_found">
-													</span>
-                                        <strong>Trending Product</strong>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_03.png" alt="icon_not_found">
-													</span>
-                                        <strong>Discount Products</strong>
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_04.png" alt="icon_not_found">
-													</span>
-                                        Beauty & Health
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_05.png" alt="icon_not_found">
-													</span>
-                                        Women's Fashion
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_06.png" alt="icon_not_found">
-													</span>
-                                        Smart Phones & Tablets
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_07.png" alt="icon_not_found">
-													</span>
-                                        Computing & Gaming
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_08.png" alt="icon_not_found">
-													</span>
-                                        Home & Living
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_09.png" alt="icon_not_found">
-													</span>
-                                        Diamond
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_10.png" alt="icon_not_found">
-													</span>
-                                        Men
-                                    </a>
-                                </li>
-                                <li class="has_child">
-                                    <a href="#!">
-													<span class="icon">
-														<img src="assets/images/icons/supermarket/icon_11.png" alt="icon_not_found">
-													</span>
-                                        Accesories
-                                    </a>
-                                </li>
+                                @foreach($cats as $category)
+                                    <li>
+                                        <a href="{{ url('/category/' . $category->id) }}">
+                                        <span class="icon">
+                                            <i class="fas fa-{{ $category->icon }}"></i>
+                                        </span>
+                                            <strong>{{ $category->name }}</strong>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -105,7 +27,7 @@
                 <div class="main_slider clearfix" data-slick='{"arrows": false}'>
                     <div class="item clearfix" data-bg-color="#ffc156">
                         <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
-                            <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            <img src="{{ asset('assets/images/slider/supermarket/img_01.png') }}" alt="image_not_found">
                         </div>
                         <div class="slider_content">
                             <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
@@ -122,7 +44,7 @@
 
                     <div class="item clearfix" data-bg-color="#ffc156">
                         <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
-                            <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            <img src="{{ asset('assets/images/slider/supermarket/img_01.png') }}" alt="image_not_found">
                         </div>
                         <div class="slider_content">
                             <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
@@ -139,7 +61,7 @@
 
                     <div class="item clearfix" data-bg-color="#ffc156">
                         <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
-                            <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            <img src="{{ asset('assets/images/slider/supermarket/img_01.png') }}" alt="image_not_found">
                         </div>
                         <div class="slider_content">
                             <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>
@@ -156,7 +78,7 @@
 
                     <div class="item clearfix" data-bg-color="#ffc156">
                         <div class="slider_image order-last" data-animation="fadeInUp" data-delay=".2s">
-                            <img src="assets/images/slider/supermarket/img_01.png" alt="image_not_found">
+                            <img src="{{ asset('assets/images/slider/supermarket/img_01.png') }}" alt="image_not_found">
                         </div>
                         <div class="slider_content">
                             <h4 data-animation="fadeInUp" data-delay=".4s">sell to get what you love</h4>

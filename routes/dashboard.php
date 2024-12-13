@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\ProductController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,6 +17,8 @@ Route::get('/create', function (){
 });
 
 Route::resource('/categories', CategoryController::class);
+
+Route::resource('/product', ProductController::class);
 
 //Route::get('/categories', [CategoryController::class, 'index']);
 //

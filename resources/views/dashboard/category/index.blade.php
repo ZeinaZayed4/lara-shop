@@ -41,13 +41,16 @@
                                         <i class="fas fa-{{ $category->icon }}"></i>
                                     </td>
                                     <td>
-                                        <a href="{{ url("admin/categories/$category->id/edit") }}" class="btn btn-warning">
-                                            Edit
-                                        </a>
                                         <form action="{{ url('/admin/categories/' . $category->id) }}" method="post">
+                                            <a href="{{ url("admin/categories/$category->id") }}" class="btn btn-sm btn-info">
+                                                View
+                                            </a>
+                                            <a href="{{ url("admin/categories/$category->id/edit") }}" class="btn btn-sm btn-warning">
+                                                Edit
+                                            </a>
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-danger">Delete</button>
+                                            <button class="btn btn-sm btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -63,7 +66,11 @@
                         @endif
                     </tbody>
                 </table>
-                {{ $cats->links() }}
+                <div class="row">
+                    <div class="col pt-5 d-flex justify-content-center">
+                        {{ $cats->links() }}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

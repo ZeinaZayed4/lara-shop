@@ -87,7 +87,11 @@
     <!-- policy_section - end
     ================================================== -->
 
-
+    <section class="policy_section sec_ptb_50 pb-0 clearfix">
+        <div class="container maxw_1460">
+            @include('website.partials.popular_products')
+        </div>
+    </section>
     <!-- deals_section - start
     ================================================== -->
     @include('website.partials.deals')
