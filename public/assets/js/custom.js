@@ -131,10 +131,10 @@
             $('.overlay').removeClass('active');
         });
 
-        $('.cart_btn').on('click', function () {
-            $('.cart_sidebar').addClass('active');
-            $('.overlay').addClass('active');
-        });
+        // $('.cart_btn').on('click', function () {
+        //     $('.cart_sidebar').addClass('active');
+        //     $('.overlay').addClass('active');
+        // });
     });
 
     $(document).ready(function () {
@@ -1178,5 +1178,27 @@
     // google map - end
     // --------------------------------------------------
 
+    $('#cart-btn').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+           url: '/add-to-cart',
+           method: 'GET',
+            success: function (data){
+                let cartCount = $('.btn_badge').first().text();
+                cartCount++;
+                $('.btn_badge').text(cartCount);
+
+                $.toaster({
+                    priority :'success',
+                    title :'Success',
+                    message : data,
+                    'timeout' : 3000
+                });
+           },
+            error: function (data){
+
+            },
+        });
+    });
 
 })(jQuery);

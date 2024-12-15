@@ -18,7 +18,7 @@
                             <li>
                                 <button type="button" class="cart_btn">
                                     <i class="fal fa-shopping-cart"></i>
-                                    <span class="btn_badge">2</span>
+                                    <span class="btn_badge">0</span>
                                 </button>
                             </li>
                             <li>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-lg-5">
                     <form action="#">
                         <div class="medical_search_bar">
                             <div class="form_item">
@@ -54,21 +54,18 @@
                     <div class="supermarket_header_btns clearfix">
                         <ul class="action_btns_group ul_li_right clearfix">
                             @if(\Illuminate\Support\Facades\Auth::check())
-                                <li>
-                                    <a>
-                                        Welcome, <br/>
-                                        {{ \Illuminate\Support\Facades\Auth::user()->name }}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                        Welcome back, {{ \Illuminate\Support\Facades\Auth::user()->name }}
                                     </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('logout') }}" class="btn btn-outline-secondary btn-sm text-dark">
-                                        Sign out
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('profile') }}" class="btn btn-outline-secondary btn-sm text-dark">
-                                        Profile
-                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a href="{{ url('profile') }}" class="dropdown-item">
+                                            Profile
+                                        </a>
+                                        <a href="{{ url('logout') }}" class="dropdown-item">
+                                            Sign out
+                                        </a>
+                                    </div>
                                 </li>
                             @else
                                 <li>
@@ -82,11 +79,18 @@
                                     </a>
                                 </li>
                             @endif
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
+                    <div class="supermarket_header_btns clearfix">
+                        <ul class="action_btns_group ul_li_right clearfix">
                             <li>
-                                <button type="button" class="cart_btn">
+                                <a href="{{ \Illuminate\Support\Facades\Auth::check() ? url('cart') : url('login') }}" class="cart_btn">
                                     <i class="fal fa-shopping-bag"></i>
-                                    <span class="btn_badge">2</span>
-                                </button>
+                                    <span class="btn_badge">0</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
