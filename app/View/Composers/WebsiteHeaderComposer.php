@@ -8,13 +8,14 @@ use Illuminate\View\View;
 class WebsiteHeaderComposer
 {
     protected $cats;
-
+    protected $cartCount;
     public function __construct() {
+        $this->cartCount = auth()->check() ? auth()->user()->cart->products->count() : 0;
         $this->cats = Category::get();
     }
 
     public function compose(View $view): void
     {
-        $view->with('cats', $this->cats);
+        $view->with('cats', $this->cats)->with('cartCount', $this->cartCount);
     }
 }

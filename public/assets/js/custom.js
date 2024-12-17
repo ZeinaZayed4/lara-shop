@@ -1178,15 +1178,14 @@
     // google map - end
     // --------------------------------------------------
 
-    $('#cart-btn').click(function (e) {
+    $('#add-to-cart-form').submit(function (e) {
         e.preventDefault();
         $.ajax({
-           url: '/add-to-cart',
-           method: 'GET',
+            url: '/add-to-cart',
+            method: 'POST',
+            data: $(this).serializeArray(),
             success: function (data){
-                let cartCount = $('.btn_badge').first().text();
-                cartCount++;
-                $('.btn_badge').text(cartCount);
+                increaseCartCount(1);
 
                 $.toaster({
                     priority :'success',
@@ -1196,9 +1195,13 @@
                 });
            },
             error: function (data){
-
             },
         });
     });
 
+    function increaseCartCount(increment) {
+        let cartCount = parseInt($('.btn_badge').first().text());
+        cartCount += increment;
+        $('.btn_badge').text(cartCount);
+    }
 })(jQuery);
