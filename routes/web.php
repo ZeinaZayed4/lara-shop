@@ -4,6 +4,7 @@ use App\Http\Controllers\Website\AuthController;
 use App\Http\Controllers\Website\HomepageController;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\CartController;
+use App\Http\Controllers\Website\OrderController;
 use App\Http\Controllers\Website\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::post('/add-to-cart', [CartController::class, 'addToCart']);
 Route::get('/remove-from-cart/{productId}', [CartController::class, 'removeFromCart']);
 Route::post('/update-cart', [CartController::class, 'update']);
+
+Route::get('/checkout', [OrderController::class, 'checkout']);
+Route::post('/create-order', [OrderController::class, 'store']);
+Route::get('/complete-order', [OrderController::class, 'completeOrder']);
